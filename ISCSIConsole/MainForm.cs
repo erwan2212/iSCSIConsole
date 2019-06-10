@@ -56,7 +56,15 @@ namespace ISCSIConsole
             }
 #endif
             //test
-            if (System.IO.File.Exists ("config.xml"))
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length>1)
+            {
+                //to do
+                /*
+                if (args[0].Equals("DiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(DiskImage.GetDiskImage(args[2], false)); }
+                */
+            }
+            if (System.IO.File.Exists ("config.xml") && args.Length <=1)
                 {
                 XmlDocument XmlDocObj = new XmlDocument();
                 XmlDocObj.Load("config.xml");
@@ -75,10 +83,11 @@ namespace ISCSIConsole
                     {
                     //
                     List<Disk> m_disks = new List<Disk>();
-                    if (targettype.Equals ("RAMDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new RAMDisk(Int32.Parse(targetsize) * 1024*1024));}
+                    if (targettype.Equals ("RAMDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new RAMDisk(int.Parse(targetsize) * 1024*1024));}
                     if (targettype.Equals ("DiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(DiskImage.GetDiskImage(targetpath, false)); }
-                    if (targettype.Equals("createDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(VirtualHardDisk.CreateFixedDisk(targetpath, Int32.Parse(targetsize)*1024*1024)); }
-                    if (targettype.Equals("PhysicalDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new PhysicalDisk(Int32.Parse(targetdiskindex)));}
+                    if (targettype.Equals("createDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(VirtualHardDisk.CreateFixedDisk(targetpath, long.Parse(targetsize)*1024*1024)); }
+                    if (targettype.Equals("createRawDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(RawDiskImage.Create(targetpath, long.Parse(targetsize) * 1024 * 1024)); }
+                    if (targettype.Equals("PhysicalDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new PhysicalDisk(int.Parse(targetdiskindex)));}
                     ISCSITarget target = new ISCSITarget(targetname, m_disks);
                     ((SCSI.VirtualSCSITarget)target.SCSITarget).OnLogEntry += Program.OnLogEntry;
                     target.OnAuthorizationRequest += new EventHandler<AuthorizationRequestArgs>(ISCSITarget_OnAuthorizationRequest);

@@ -33,7 +33,7 @@ namespace ISCSIConsole
             if (path == String.Empty)
             {
                 MessageBox.Show("Please choose file location", "Error");
-                return;
+                return; 
             }
             m_isWorking = true;
             new Thread(delegate()

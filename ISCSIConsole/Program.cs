@@ -46,11 +46,13 @@ namespace ISCSIConsole
                 }
                 else
                 {
+                 /*
                     StringBuilder builder = new StringBuilder();
                     builder.AppendLine("Command line arguments:");
                     builder.AppendLine("/log - will write log file to executable directory");
                     MessageBox.Show(builder.ToString(), "Error");
                     return;
+                 */
                 }
             }
             Application.EnableVisualStyles();
