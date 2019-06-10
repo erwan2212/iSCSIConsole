@@ -38,6 +38,7 @@ namespace SCSI
             workerThread.Start();
         }
 
+
         private void ProcessCommandQueue()
         {
             while (true)
@@ -51,6 +52,11 @@ namespace SCSI
 
                 byte[] responseBytes;
                 SCSIStatusCodeName status = ExecuteCommand(command.CommandBytes, command.LUN, command.Data, out responseBytes);
+                //logging to console
+                Console.WriteLine("CommandBytes:" + BitConverter.ToString(command.CommandBytes) );
+                Console.WriteLine("LUN:" + command.LUN);
+                Console.WriteLine("Data:" + BitConverter.ToString(command.Data));
+                //
                 command.OnCommandCompleted(status, responseBytes, command.Task);
             }
         }

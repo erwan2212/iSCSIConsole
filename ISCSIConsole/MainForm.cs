@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using ISCSI.Server;
 using DiskAccessLibrary;
 using Utilities;
+using System.Xml;
 
 namespace ISCSIConsole
 {
@@ -54,10 +55,44 @@ namespace ISCSIConsole
                 lblStatus.Text = "Some features require administrator privileges and have been disabled";
             }
 #endif
+            //test
+            if (System.IO.File.Exists ("config.xml"))
+                {
+                XmlDocument XmlDocObj = new XmlDocument();
+                XmlDocObj.Load("config.xml");
+                XmlNode node = XmlDocObj.SelectSingleNode("//target");
+                string targetname = node.Attributes["name"].Value;
+                string targetpath = node.Attributes["path"].Value;
+                if (targetpath != "")
+                    {
+                    //
+                    List<Disk> m_disks = new List<Disk>();
+                    m_disks.Add(DiskImage.GetDiskImage(targetpath, false));
+                    ISCSITarget target = new ISCSITarget(targetname, m_disks);
+                    ((SCSI.VirtualSCSITarget)target.SCSITarget).OnLogEntry += Program.OnLogEntry;
+                    target.OnAuthorizationRequest += new EventHandler<AuthorizationRequestArgs>(ISCSITarget_OnAuthorizationRequest);
+                    target.OnSessionTermination += new EventHandler<SessionTerminationArgs>(ISCSITarget_OnSessionTermination);
+                    m_targets.Add(target);
+                    //
+                    try
+                    {
+                        m_server.AddTarget(target);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error");
+                        return;
+                    }
+                    listTargets.Items.Add(target.TargetName);
+                }
+                }
+
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+
             if (!m_started)
             {
                 IPAddress serverAddress = (IPAddress)comboIPAddress.SelectedValue;

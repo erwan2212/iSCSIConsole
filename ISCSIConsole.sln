@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISCSIConsole", "ISCSIConsole\ISCSIConsole.csproj", "{6C9727E4-00AC-4DE0-86A3-5A10259DE3E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskAccessLibrary", "DiskAccessLibrary\DiskAccessLibrary.csproj", "{000D0367-63A1-475D-982D-67A0B93BABEB}"
@@ -34,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EEF96572-C0A3-4C9F-A55F-DA4A0EF43F5F}
 	EndGlobalSection
 EndGlobal

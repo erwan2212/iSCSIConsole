@@ -200,5 +200,16 @@ namespace ISCSIConsole
         {
             btnCreateDiskImage.Text = "Create Virtual Disk";
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateRAMDiskForm createRAMDisk = new CreateRAMDiskForm();
+            DialogResult result = createRAMDisk.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                RAMDisk ramDisk = createRAMDisk.RAMDisk;
+                AddDisk(ramDisk);
+            }
+        }
     }
 }

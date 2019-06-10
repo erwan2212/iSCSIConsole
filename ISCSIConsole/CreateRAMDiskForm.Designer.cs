@@ -51,7 +51,7 @@ namespace ISCSIConsole
             0,
             0});
             this.numericDiskSize.Name = "numericDiskSize";
-            this.numericDiskSize.Size = new System.Drawing.Size(86, 20);
+            this.numericDiskSize.Size = new System.Drawing.Size(86, 22);
             this.numericDiskSize.TabIndex = 0;
             this.numericDiskSize.ThousandsSeparator = true;
             this.numericDiskSize.Value = new decimal(new int[] {
@@ -65,7 +65,7 @@ namespace ISCSIConsole
             this.lblSize.AutoSize = true;
             this.lblSize.Location = new System.Drawing.Point(12, 18);
             this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(30, 13);
+            this.lblSize.Size = new System.Drawing.Size(39, 17);
             this.lblSize.TabIndex = 1;
             this.lblSize.Text = "Size:";
             // 
@@ -74,7 +74,7 @@ namespace ISCSIConsole
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(148, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
+            this.label1.Size = new System.Drawing.Size(28, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "MB";
             // 
@@ -104,7 +104,7 @@ namespace ISCSIConsole
             this.AcceptButton = this.btnOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(394, 125);
+            this.ClientSize = new System.Drawing.Size(382, 103);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
