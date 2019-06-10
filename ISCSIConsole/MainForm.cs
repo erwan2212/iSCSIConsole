@@ -77,7 +77,7 @@ namespace ISCSIConsole
                     List<Disk> m_disks = new List<Disk>();
                     if (targettype.Equals ("RAMDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new RAMDisk(Int32.Parse(targetsize) * 1024*1024));}
                     if (targettype.Equals ("DiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(DiskImage.GetDiskImage(targetpath, false)); }
-                    if (targettype.Equals("createDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(VirtualHardDisk.CreateFixedDisk(targetpath, Int32.Parse(targetsize))); }
+                    if (targettype.Equals("createDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(VirtualHardDisk.CreateFixedDisk(targetpath, Int32.Parse(targetsize)*1024*1024)); }
                     if (targettype.Equals("PhysicalDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new PhysicalDisk(Int32.Parse(targetdiskindex)));}
                     ISCSITarget target = new ISCSITarget(targetname, m_disks);
                     ((SCSI.VirtualSCSITarget)target.SCSITarget).OnLogEntry += Program.OnLogEntry;
