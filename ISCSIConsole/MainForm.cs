@@ -61,13 +61,24 @@ namespace ISCSIConsole
                 XmlDocument XmlDocObj = new XmlDocument();
                 XmlDocObj.Load("config.xml");
                 XmlNode node = XmlDocObj.SelectSingleNode("//target");
-                string targetname = node.Attributes["name"].Value;
-                string targetpath = node.Attributes["path"].Value;
-                if (targetpath != "")
+                string targetname = "";
+                string targetpath = "";
+                string targettype = "";
+                string targetsize = "";
+                string targetdiskindex = "";
+                if (node.Attributes["name"] != null) { targetname = node.Attributes["name"].Value; }
+                if (node.Attributes["path"] != null) { targetpath = node.Attributes["path"].Value; }
+                if (node.Attributes["class"] != null) { targettype = node.Attributes["class"].Value; }
+                if (node.Attributes["size"] != null) { targetsize = node.Attributes["size"].Value; }
+                if (node.Attributes["index"] != null) { targetdiskindex = node.Attributes["index"].Value; }
+                if (targetname != "")
                     {
                     //
                     List<Disk> m_disks = new List<Disk>();
-                    m_disks.Add(DiskImage.GetDiskImage(targetpath, false));
+                    if (targettype.Equals ("RAMDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new RAMDisk(Int32.Parse(targetsize) * 1024*1024));}
+                    if (targettype.Equals ("DiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(DiskImage.GetDiskImage(targetpath, false)); }
+                    if (targettype.Equals("createDiskImage", StringComparison.OrdinalIgnoreCase)) { m_disks.Add(VirtualHardDisk.CreateFixedDisk(targetpath, Int32.Parse(targetsize))); }
+                    if (targettype.Equals("PhysicalDisk", StringComparison.OrdinalIgnoreCase)) {m_disks.Add(new PhysicalDisk(Int32.Parse(targetdiskindex)));}
                     ISCSITarget target = new ISCSITarget(targetname, m_disks);
                     ((SCSI.VirtualSCSITarget)target.SCSITarget).OnLogEntry += Program.OnLogEntry;
                     target.OnAuthorizationRequest += new EventHandler<AuthorizationRequestArgs>(ISCSITarget_OnAuthorizationRequest);
