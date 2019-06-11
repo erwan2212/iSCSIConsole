@@ -40,6 +40,7 @@ namespace ISCSIConsole
             this.listTargets = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.chklog = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@ namespace ISCSIConsole
             this.lblPort.AutoSize = true;
             this.lblPort.Location = new System.Drawing.Point(232, 17);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(53, 13);
+            this.lblPort.Size = new System.Drawing.Size(69, 17);
             this.lblPort.TabIndex = 1;
             this.lblPort.Text = "TCP Port:";
             // 
@@ -66,7 +67,7 @@ namespace ISCSIConsole
             // 
             this.txtPort.Location = new System.Drawing.Point(291, 14);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(53, 20);
+            this.txtPort.Size = new System.Drawing.Size(53, 22);
             this.txtPort.TabIndex = 2;
             this.txtPort.Text = "3260";
             // 
@@ -75,7 +76,7 @@ namespace ISCSIConsole
             this.lblIPAddress.AutoSize = true;
             this.lblIPAddress.Location = new System.Drawing.Point(12, 16);
             this.lblIPAddress.Name = "lblIPAddress";
-            this.lblIPAddress.Size = new System.Drawing.Size(61, 13);
+            this.lblIPAddress.Size = new System.Drawing.Size(80, 17);
             this.lblIPAddress.TabIndex = 3;
             this.lblIPAddress.Text = "IP Address:";
             // 
@@ -85,7 +86,7 @@ namespace ISCSIConsole
             this.comboIPAddress.FormattingEnabled = true;
             this.comboIPAddress.Location = new System.Drawing.Point(79, 13);
             this.comboIPAddress.Name = "comboIPAddress";
-            this.comboIPAddress.Size = new System.Drawing.Size(136, 21);
+            this.comboIPAddress.Size = new System.Drawing.Size(136, 24);
             this.comboIPAddress.TabIndex = 4;
             // 
             // btnAddTarget
@@ -103,7 +104,7 @@ namespace ISCSIConsole
             this.lblTargets.AutoSize = true;
             this.lblTargets.Location = new System.Drawing.Point(12, 57);
             this.lblTargets.Name = "lblTargets";
-            this.lblTargets.Size = new System.Drawing.Size(46, 13);
+            this.lblTargets.Size = new System.Drawing.Size(61, 17);
             this.lblTargets.TabIndex = 7;
             this.lblTargets.Text = "Targets:";
             // 
@@ -121,33 +122,47 @@ namespace ISCSIConsole
             // listTargets
             // 
             this.listTargets.FormattingEnabled = true;
+            this.listTargets.ItemHeight = 16;
             this.listTargets.Location = new System.Drawing.Point(79, 57);
             this.listTargets.Name = "listTargets";
-            this.listTargets.Size = new System.Drawing.Size(265, 95);
+            this.listTargets.Size = new System.Drawing.Size(265, 84);
             this.listTargets.TabIndex = 9;
             this.listTargets.SelectedIndexChanged += new System.EventHandler(this.listTargets_SelectedIndexChanged);
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 173);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 151);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(474, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(462, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // lblActiveSessions
+            // lblStatus
             // 
-            this.lblStatus.Name = "lblActiveSessions";
+            this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 17);
+            // 
+            // chklog
+            // 
+            this.chklog.AutoSize = true;
+            this.chklog.Location = new System.Drawing.Point(357, 128);
+            this.chklog.Name = "chklog";
+            this.chklog.Size = new System.Drawing.Size(54, 21);
+            this.chklog.TabIndex = 11;
+            this.chklog.Text = "Log";
+            this.chklog.UseVisualStyleBackColor = true;
+            this.chklog.CheckedChanged += new System.EventHandler(this.chklog_CheckedChanged);
             // 
             // MainForm
             // 
             this.AcceptButton = this.btnStart;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(474, 195);
+            this.ClientSize = new System.Drawing.Size(462, 173);
+            this.Controls.Add(this.chklog);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listTargets);
             this.Controls.Add(this.btnRemoveTarget);
@@ -187,5 +202,6 @@ namespace ISCSIConsole
         private System.Windows.Forms.ListBox listTargets;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.CheckBox chklog;
     }
 }

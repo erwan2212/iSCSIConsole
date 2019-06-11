@@ -40,6 +40,7 @@ namespace ISCSIConsole
 
         private void btnCreateDiskImage_Click(object sender, EventArgs e)
         {
+            /*
             if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
             {
                 CreateRAMDiskForm createRAMDisk = new CreateRAMDiskForm();
@@ -51,6 +52,7 @@ namespace ISCSIConsole
                 }
             }
             else
+            */
             {
                 CreateDiskImageForm createDiskImage = new CreateDiskImageForm();
                 DialogResult result = createDiskImage.ShowDialog();

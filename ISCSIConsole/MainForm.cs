@@ -17,6 +17,7 @@ using ISCSI.Server;
 using DiskAccessLibrary;
 using Utilities;
 using System.Xml;
+using System.IO;
 
 namespace ISCSIConsole
 {
@@ -253,6 +254,33 @@ namespace ISCSIConsole
         private void listTargets_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateUI();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chklog_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chklog.Checked)
+            {
+                ISCSIConsole.Program.CloseLogFile();
+            }
+                if (chklog.Checked )
+            {
+                string path = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+                if (!path.EndsWith(@"\"))
+                {
+                    path += @"\";
+                }
+                path += String.Format("Log {0}.txt", DateTime.Now.ToString("yyyy-MM-dd HH-mm"));
+                bool success = ISCSIConsole.Program.OpenLogFile(path);
+                if (!success)
+                {
+                    MessageBox.Show("Cannot open log file", "Error");
+                }
+            }
         }
     }
 }
