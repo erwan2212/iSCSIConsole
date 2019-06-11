@@ -20,8 +20,10 @@ namespace DiskAccessLibrary
         /// <summary>
         /// A single-dimensional byte array cannot contain more than 0X7FFFFFC7 bytes (2047.999 MiB).
         /// https://msdn.microsoft.com/en-us/library/System.Array(v=vs.110).aspx
+        /// or in a x64 env + .net 4.5, see https://stackoverflow.com/questions/39025934/where-to-set-gcallowverylargeobjects
         /// </summary>
         public RAMDisk(int size)
+        //public RAMDisk(long size)
         {
             m_diskBytes = new byte[size];
         }

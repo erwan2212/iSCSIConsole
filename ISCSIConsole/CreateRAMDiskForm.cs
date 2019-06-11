@@ -28,6 +28,7 @@ namespace ISCSIConsole
         private void btnOK_Click(object sender, EventArgs e)
         {
             int size = (int)numericDiskSize.Value * 1024 * 1024;
+            //long size = (long)numericDiskSize.Value * 1024 * 1024;
             RAMDisk disk;
             try
             {

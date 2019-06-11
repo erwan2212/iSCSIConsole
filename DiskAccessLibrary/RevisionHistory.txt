@@ -168,3 +168,4 @@ Fork by Erwan2212
 		if IsValidIQN returns false, user gets prompted
 		todo : go offline when adding a physicaldisk
 		todo : manage more than 2047.999 mib
+		todo : possibly add support for more formats (qcow, virtualbox, ...)
