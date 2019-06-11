@@ -159,3 +159,12 @@ Revision History:
         NTFS: NTFSVolume: Changed RootDirSegmentReference property from protected internal to public.
         NTFS: IndexHelper: Bugfix: Correctly set BlocksPerIndexRecord when BytesPerIndexRecord > BytesPerCluster.
         NTFS: NTFSVolume: Added support for multithreading.
+
+Fork by Erwan2212
+		Config.xml allowing one to automaticall add a target - existing diskimage only (syntax to be reviewed to add multiple targets/storages)
+		Added a button for ram disk
+		Config.xml now supporting DiskImage, createDiskImage, RAMDisk, PhysicalDisk, createRawDiskImage
+		Added a checkbox for logging
+		if IsValidIQN returns false, user gets prompted
+		todo : go offline when adding a physicaldisk
+		todo : manage more than 2047.999 mib
