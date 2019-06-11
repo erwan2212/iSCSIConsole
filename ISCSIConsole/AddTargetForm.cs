@@ -143,8 +143,8 @@ namespace ISCSIConsole
         {
             if (!ISCSINameHelper.IsValidIQN(txtTargetIQN.Text))
             {
-                MessageBox.Show("Target IQN is invalid", "Error");
-                return;
+                DialogResult dialogResult = MessageBox.Show("Target IQN is invalid, Continue?", "Warning", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No) { return; }
             }
             m_target = new ISCSITarget(txtTargetIQN.Text, m_disks);
             m_targetNumber++;
