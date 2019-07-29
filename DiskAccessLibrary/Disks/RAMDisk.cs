@@ -25,7 +25,7 @@ namespace DiskAccessLibrary
         public RAMDisk(int size)
         //public RAMDisk(long size)
         {
-            m_diskBytes = new byte[size];
+            m_diskBytes = new byte[size]; //max is 2047 * 1024 * 1024
         }
 
         public void Free()
